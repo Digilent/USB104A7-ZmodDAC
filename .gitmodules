@@ -4,3 +4,4 @@
 [submodule "FPGA/repo/vivado-library"]
 	path = FPGA/repo/vivado-library
 	url = https://github.com/Digilent/vivado-library
+	branch = hierarchies
