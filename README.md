@@ -22,7 +22,7 @@ For more information see the [USB104A7 ZmodDAC Demo Wiki](https://reference.digi
 
 Requirements
 ------------
-* **USB104A7**: To purchase a USB104A7, see the [Digilent Store](https://store.digilentinc.com/) NEEDS LINK
+* **USB104A7**: To purchase a USB104A7, see the [Digilent Store](https://store.digilentinc.com/usb104a7/)
 * **Vivado 2019.1 Installation with Xilinx SDK**: To set up Vivado, see the [Installing Vivado and Digilent Board Files Tutorial](https://reference.digilentinc.com/vivado/installing-vivado/start).
 * **Serial Terminal Emulator Application (Optional)**: For more information see the [Installing and Using a Terminal Emulator Tutorial](https://reference.digilentinc.com/learn/programmable-logic/tutorials/tera-term).
 * **USB A Cable**
