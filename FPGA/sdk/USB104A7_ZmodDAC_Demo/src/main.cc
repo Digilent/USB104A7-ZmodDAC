@@ -5,7 +5,7 @@
 #include "platform.h"
 #include "xil_printf.h"
 #include "dpti/dpti.h"
-#include "ZmodDAC1411/zmoddac1411.h"
+#include "zmodlib/ZmodDAC1411/zmoddac1411.h"
 
 XStatus DemoInitialize();
 void DemoRun();
@@ -53,7 +53,8 @@ XStatus DemoInitialize(){
 }
 
 void testDAC() {
-    uint32_t *buf = (uint32_t *)ZmodDAC.allocChannelsBuffer(0x400 << 2);
+	size_t size = 0x400 << 2;
+    uint32_t *buf = (uint32_t *)ZmodDAC.allocChannelsBuffer(size);
     if(buf==NULL){
 
     	return;
@@ -62,15 +63,15 @@ void testDAC() {
     for (int i = 0; i < 0x400; i++) {
         buf[i] = ZmodDAC.arrangeChannelData(0, i << 3); // channel A
     }
-
+    size=size>>2;
     // Send data to DAC and start the instrument
-    ZmodDAC.setData(buf, 0x400);
+    ZmodDAC.setData(buf, size);
     ZmodDAC.start();
 }
 
 void DemoRun(){
 	int operation=0;
-	int nSamples;
+	size_t nSamples;
 	uint32_t param;
 	uint32_t channel;
 	int szRecvBuffer=0;
@@ -137,7 +138,7 @@ void DemoRun(){
 						return;
 					}
 				}
-				for (int i = 0; i < nSamples; i++) {
+				for (unsigned int i = 0; i < nSamples; i++) {
 					//If channel 1 (channel = 0), top 16 bits get set to 0 then written.
 					//If channel 2 (channel = 1), bottom 16 bits get set to 0 then written.
 					//(channel<<4) = 16 if channel=1, so 0xFFFF<<16 = 0xFFFF0000
